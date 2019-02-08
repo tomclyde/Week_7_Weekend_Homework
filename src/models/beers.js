@@ -13,7 +13,6 @@ Beers.prototype.bindEvents = function () {
 };
 
 Beers.prototype.getData = function () {
-  console.log(this);
   const url = 'https://api.punkapi.com/v2/beers';
   const request = new Request(url);
      request.get()
