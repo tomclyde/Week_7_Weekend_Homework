@@ -10,6 +10,11 @@ BeerListView.prototype.bindEvents = function () {
     this.clearList();
     this.renderBeerView(evt.detail);
   });
+
+  PubSub.subscribe('Beer:beer-info-ready', (evt) => {
+    this.clearList();
+    this.renderDetailedBeerView(evt.detail);
+  });
 };
 
 BeerListView.prototype.clearList = function () {
@@ -23,11 +28,24 @@ BeerListView.prototype.renderBeerView = function (beers) {
   });
 };
 
+BeerListView.prototype.renderDetailedBeerView = function (beer) {
+    console.log("in detailed beer view");
+    const beerItem = this.createBeerDetailedItem(beer);
+    this.container.appendChild(beerItem);
+};
+
 BeerListView.prototype.createBeerListItem = function (beer) {
   //console.log(beer);
   const beerDetailView = new BeerView();
   const beerDetail = beerDetailView.createBeerDetail(beer);
   return beerDetail;
+};
+
+BeerListView.prototype.createBeerDetailedItem = function (beer) {
+  console.log("in detailed item");
+  const beerExtraDetailView = new BeerView();
+  const beerExtraDetail = beerExtraDetailView.createExtraBeerDetail(beer);
+  return beerExtraDetail;
 };
 
 module.exports = BeerListView;

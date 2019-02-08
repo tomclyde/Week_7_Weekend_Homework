@@ -6,7 +6,7 @@ const Beers = function () {
 };
 
 Beers.prototype.bindEvents = function () {
-  PubSub.subscribe('SelectView:change', (evt)  => {
+  PubSub.subscribe('SelectBeerView:change', (evt)  => {
     const beerIndex = evt.detail;
     this.publishBeerDetails(beerIndex);
   })
@@ -20,6 +20,17 @@ Beers.prototype.getData = function () {
          this.beers = activity;
     PubSub.publish('Beers:beers-data-ready', this.beers);
   });
+};
+
+Beers.prototype.publishBeerDetails = function (beerIndex) {
+  const beerSelected = this.beerDetails(beerIndex);
+  console.log(beerSelected);
+  PubSub.publish('Beer:beer-info-ready', beerSelected);
+};
+
+Beers.prototype.beerDetails = function (beerIndex) {
+  const selectedBeer = this.beers[beerIndex];
+  return selectedBeer;
 };
 
 
