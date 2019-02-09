@@ -10,6 +10,10 @@ Beers.prototype.bindEvents = function () {
     const beerIndex = evt.detail;
     this.publishBeerDetails(beerIndex);
   })
+
+  PubSub.subscribe('ResetButtonView:pressed', (evt)  => {
+    this.getData();
+  })
 };
 
 Beers.prototype.getData = function () {
@@ -24,7 +28,6 @@ Beers.prototype.getData = function () {
 
 Beers.prototype.publishBeerDetails = function (beerIndex) {
   const beerSelected = this.beerDetails(beerIndex);
-  console.log(beerSelected);
   PubSub.publish('Beer:beer-info-ready', beerSelected);
 };
 

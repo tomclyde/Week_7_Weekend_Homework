@@ -13,7 +13,6 @@ BeerView.prototype.createBeerDetail = function (beer) {
 };
 
 BeerView.prototype.createExtraBeerDetail = function (beer) {
-  console.log("in extra");
   const beerExtraDetail = document.createElement('div');
   //beerDetail.classList.add('beer-detail');
 
